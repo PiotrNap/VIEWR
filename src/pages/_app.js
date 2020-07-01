@@ -7,7 +7,7 @@ import { NextSeo } from 'next-seo'
 import '../styles/index.scss'
 
 const metaData = {
-  name: 'Assignment boilerplate',
+  name: 'VIEWR',
   description: 'This is a Assignment boilerplate'
 }
 
