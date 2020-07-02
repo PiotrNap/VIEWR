@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Photographers = () => {
+const Photographers = ({ randomAuthors }) => {
   return <div></div>;
 };
 

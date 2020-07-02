@@ -1,13 +1,8 @@
 import React from 'react';
-import Photos from '../photos/Photos';
 
-const MainSection = ({ fetchOnScroll, inputHandler, onSubmitHandler }) => {
-  const onSubmitHandle = e => {
-    e.preventDefault();
-  };
-
+const MainSection = ({ inputHandler, onSubmitHandler }) => {
   return (
-    <div className="discover">
+    <div className="main-section">
       <main className="hero-main">
         <nav className="navigation">
           <ul className="navigation-list">
@@ -31,7 +26,7 @@ const MainSection = ({ fetchOnScroll, inputHandler, onSubmitHandler }) => {
           <div className="hero-underline-text">
             Photographed by <span>Maarlen Bouwkamp</span>
           </div>
-          <div className="search-sectio">
+          <div className="search-section">
             <form onSubmit={e => onSubmitHandler(e)}>
               <input type="text" onChange={e => inputHandler(e)} />
               <button
@@ -47,8 +42,6 @@ const MainSection = ({ fetchOnScroll, inputHandler, onSubmitHandler }) => {
           <div className="search-left-block"></div>
         </div>
       </main>
-      {/* <button onClick={() => fetchOnScroll()}>Click me for pictures</button> */}
-      <Photos />
     </div>
   );
 };
