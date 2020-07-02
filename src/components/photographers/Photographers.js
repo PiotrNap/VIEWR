@@ -29,11 +29,12 @@ const CardsSection = styled.div`
 `;
 
 const AuthorCard = styled.div`
-  width: 230px;
+  width: 250px;
   height: 340px;
   margin: 48px 15px;
   box-shadow: 0px 2px 18px rgba(0, 0, 0, 0.1);
   background: #c4c4c4;
+  cursor: pointer;
 `;
 const Image = styled.div`
   height: 100%;
@@ -41,6 +42,10 @@ const Image = styled.div`
   background-image: url(${({ image }) => image});
   background-repeat: no-repeat;
   background-size: cover;
+  transition: opacity ease-in-out 0.2s;
+  :hover {
+    opacity: 0.8;
+  }
 `;
 const AuthorInfo = styled.div`
   height: 90px;
@@ -58,7 +63,6 @@ const AuthorInfo = styled.div`
   border-left: 1px solid #cccccc;
   border-right: 1px solid #cccccc;
   box-shadow: 0px 2px 18px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
 
   span {
     color: #000000;

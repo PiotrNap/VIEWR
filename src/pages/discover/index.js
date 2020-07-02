@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import MainSection from '../components/main/MainSection';
-import Photographers from '../components/photographers/Photographers';
-import Photos from '../components/photos/Photos';
-import unsplash from '../helpers/unsplashApi';
+import MainSection from '../../components/main/MainSection';
+import Photographers from '../../components/photographers/Photographers';
+import Photos from '../../components/photos/Photos';
+import unsplash from '../../helpers/unsplashApi';
 import randomWords from 'random-words';
 
-let PER_PAGE_LIMIT = 10;
+let PER_PAGE_LIMIT = 15;
 let PAGE = 1;
 
 function Discover() {
@@ -35,7 +35,10 @@ function Discover() {
           download: item.links.download
         })
       );
-      setDefaultPhotos(newState);
+      if (newState.length === 15) {
+        setDefaultPhotos(newState);
+      }
+
       console.log('data: ', data);
 
       let authorsRandom = [];
@@ -90,7 +93,6 @@ function Discover() {
     <div className="discover">
       <MainSection
         onSubmitHandler={onSubmitHandler}
-        // fetchOnScroll={fetchOnScroll}
         inputHandler={inputHandler}
       />
       <Photographers randomAuthors={randomAuthors} />
