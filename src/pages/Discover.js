@@ -5,9 +5,6 @@ import Photos from '../components/photos/Photos';
 import unsplash from '../helpers/unsplashApi';
 import randomWords from 'random-words';
 
-// Styles
-import '../styles/pages/discover.scss';
-
 let PER_PAGE_LIMIT = 10;
 let PAGE = 1;
 
@@ -96,7 +93,7 @@ function Discover() {
       />
       <Photographers randomAuthors={randomAuthors} />
       <Photos photos={photos} defaultPhotos={defaultPhotos} />
-      <button onClick={() => setPhotos()}>CLICK HERE</button>
+      {/* <button onClick={() => setPhotos()}>CLICK HERE</button> */}
     </div>
   );
 }
