@@ -8,7 +8,7 @@ const Section = styled.section`
 `;
 const TitleSection = styled.div`
   border-bottom: 1px solid #e0e0e0;
-  margin-top: 50px;
+  margin-top: 60px;
 
   h1 {
     font-style: normal;
@@ -42,7 +42,7 @@ const Image = styled.div`
   background-image: url(${({ image }) => image});
   background-repeat: no-repeat;
   background-size: cover;
-  transition: opacity ease-in-out 0.2s;
+  transition: opacity ease-in-out 0.1s;
   :hover {
     opacity: 0.8;
   }

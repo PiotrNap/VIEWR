@@ -125,9 +125,9 @@ const SearchBox = styled.div`
       margin-left: 24px;
       letter-spacing: 0.5px;
       cursor: pointer;
-      transition: opacity ease-in-out 1s;
+      transition: opacity ease-in-out 0.1s;
       :hover {
-        opacity: 0.8;
+        opacity: 0.9;
       }
     }
   }

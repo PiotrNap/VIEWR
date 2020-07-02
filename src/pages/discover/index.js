@@ -9,7 +9,7 @@ let PER_PAGE_LIMIT = 15;
 let PAGE = 1;
 
 function Discover() {
-  const [photos, setPhotos] = useState([]);
+  const [photos, setPhotos] = useState(null);
   const [defaultPhotos, setDefaultPhotos] = useState([]);
   const [searchValue, setSearchValue] = useState(null);
   const [randomAuthors, setRandomAuthors] = useState([]);
@@ -39,15 +39,12 @@ function Discover() {
         setDefaultPhotos(newState);
       }
 
-      console.log('data: ', data);
-
       let authorsRandom = [];
       for (let i = 0; i < 4; i++) {
         var index = Math.floor(Math.random() * newState.length);
         authorsRandom.push(newState[index]);
       }
       setRandomAuthors(authorsRandom);
-      console.log('authorsRandom: ', authorsRandom);
     })();
   }, []);
 
@@ -66,7 +63,7 @@ function Discover() {
     );
     const json = await response.json();
     const data = await json.results;
-    let newArray = [];
+    let newState = [];
     await data.map(item =>
       newState.push({
         name: item.user.name,
@@ -77,17 +74,10 @@ function Discover() {
         download: item.links.download
       })
     );
-    setPhotos(newArray);
+    if (newState.length === 15) {
+      setPhotos(newState);
+    }
   }
-
-  //   const fetchOnScroll = () => {
-  //     unsplash.search
-  //       .photos('dogs', 1, 10, { orientation: 'portrait' })
-  //       .then(res => res.json())
-  //       .then(json => {
-  //         setPhotos(json);
-  //       });
-  //   };
 
   return (
     <div className="discover">
@@ -97,7 +87,6 @@ function Discover() {
       />
       <Photographers randomAuthors={randomAuthors} />
       <Photos photos={photos} defaultPhotos={defaultPhotos} />
-      {/* <button onClick={() => setPhotos()}>CLICK HERE</button> */}
     </div>
   );
 }

@@ -3,14 +3,14 @@ import styled from 'styled-components';
 
 const MainSection = styled.div`
   min-width: 1320px;
-  max-width: 80vw;
+  max-width: 90%;
   margin: 40px auto;
   padding-left: auto;
   padding-right: auto;
 `;
 const TitleSection = styled.div`
   border-bottom: 1px solid #e0e0e0;
-  margin-top: 50px;
+  margin: 24px 24px 0;
 
   h1 {
     font-style: normal;
@@ -21,13 +21,14 @@ const TitleSection = styled.div`
     text-transform: uppercase;
     color: #0b0b0b;
     margin-bottom: 18px;
-    margin-top: 18px;
   }
 `;
 const Gallery = styled.div`
   display: grid;
   grid-column-gap: 24px;
   grid-template-columns: repeat(3, 1fr);
+
+  margin: 48px 15px;
   padding-bottom: 48px;
 `;
 
@@ -52,22 +53,30 @@ const Photos = ({ photos, defaultPhotos }) => {
   const [thirdColumn, setThirdColumn] = useState(null);
 
   useEffect(() => {
-    setFirstColumn(defaultPhotos.slice(0, 5));
-    setSecondColumn(defaultPhotos.slice(5, 10));
-    setThirdColumn(defaultPhotos.slice(10, 15));
-  }, [defaultPhotos]);
+    if (!photos) {
+      setFirstColumn(defaultPhotos.slice(0, 5));
+      setSecondColumn(defaultPhotos.slice(5, 10));
+      setThirdColumn(defaultPhotos.slice(10, 15));
+    }
 
-  console.log('firstColum :', firstColumn);
+    if (photos) {
+      setFirstColumn(photos.slice(0, 5));
+      setSecondColumn(photos.slice(5, 10));
+      setThirdColumn(photos.slice(10, 15));
+    }
+  }, [defaultPhotos, photos]);
+
+  // console.log('firstColum :', firstColumn);
   return (
     <MainSection>
       <TitleSection>
-        <h1>Photographers</h1>
+        <h1>Photos</h1>
       </TitleSection>
       <Gallery>
         <GalleryColumn>
           {firstColumn &&
             firstColumn.map(column => (
-              <div key={column.name}>
+              <div key={column.name} key={Math.floor(Math.random() * 10000)}>
                 <figure itemProp="image">
                   <img src={column.url} />
                 </figure>
@@ -77,7 +86,7 @@ const Photos = ({ photos, defaultPhotos }) => {
         <GalleryColumn>
           {secondColumn &&
             secondColumn.map(column => (
-              <div key={column.name}>
+              <div key={column.name} key={Math.floor(Math.random() * 10000)}>
                 <figure itemProp="image">
                   <img src={column.url} />
                 </figure>
@@ -87,7 +96,7 @@ const Photos = ({ photos, defaultPhotos }) => {
         <GalleryColumn>
           {thirdColumn &&
             thirdColumn.map(column => (
-              <div key={column.name}>
+              <div key={column.name} key={Math.floor(Math.random() * 10000)}>
                 <figure itemProp="image">
                   <img src={column.url} />
                 </figure>
