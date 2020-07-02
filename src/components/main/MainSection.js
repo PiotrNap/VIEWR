@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styled from 'styled-components';
 import hero from '../../../public/img/hero.png';
 import IconLogo from '../../../public/img/IconLogo';
@@ -42,9 +43,17 @@ const NavigationList = styled.ul`
     margin: 0 40px;
     letter-spacing: 1px;
     cursor: pointer;
+    /* transition: all ease-in 0.1s; */
+
+    :not(.unstyled):hover {
+      font-weight: 500;
+      padding-bottom: 10px;
+      border-bottom: 1px solid white;
+    }
   }
 
   .active {
+    font-weight: 500;
     padding-bottom: 10px;
     border-bottom: 1px solid white;
   }
@@ -161,9 +170,11 @@ const MainSection = ({ inputHandler, onSubmitHandler }) => {
           <NavigationList>
             <li>About</li>
             <li className="active">Discover</li>
-            <li>
+            <li className="unstyled">
               <StyledLogo>
-                <IconLogo />
+                <a href="/">
+                  <IconLogo />
+                </a>
               </StyledLogo>
             </li>
             <li>User</li>

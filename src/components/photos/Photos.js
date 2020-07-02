@@ -40,6 +40,11 @@ const GalleryColumn = styled.div`
     height: auto;
     vertical-align: middle;
     border-style: none;
+    cursor: zoom-in;
+    transition: filter ease-out 0.2s;
+    :hover {
+      filter: brightness(80%);
+    }
   }
 
   figure {
@@ -47,10 +52,20 @@ const GalleryColumn = styled.div`
   }
 `;
 
+const Avatar = styled.img`
+  /* width: 14px;
+  height: 14px;
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  display: ${props => (props.isShown ? 'block' : 'none')}; */
+`;
+
 const Photos = ({ photos, defaultPhotos }) => {
   const [firstColumn, setFirstColumn] = useState(null);
   const [secondColumn, setSecondColumn] = useState(null);
   const [thirdColumn, setThirdColumn] = useState(null);
+  const [isShown, setIsShown] = useState(false);
 
   useEffect(() => {
     if (!photos) {
@@ -67,6 +82,7 @@ const Photos = ({ photos, defaultPhotos }) => {
   }, [defaultPhotos, photos]);
 
   // console.log('firstColum :', firstColumn);
+
   return (
     <MainSection>
       <TitleSection>
@@ -78,7 +94,14 @@ const Photos = ({ photos, defaultPhotos }) => {
             firstColumn.map(column => (
               <div key={column.name} key={Math.floor(Math.random() * 10000)}>
                 <figure itemProp="image">
-                  <img src={column.url} />
+                  <a href={column.urlRegular} target="_blank">
+                    <img
+                      src={column.url}
+                      // onMouseEnter={() => setIsShown(true)}
+                      // onMouseLeave={() => setIsShown(false)}
+                    />
+                  </a>
+                  {/* <Avatar src={column.avatar} isShown={isShown} /> */}
                 </figure>
               </div>
             ))}
@@ -88,7 +111,9 @@ const Photos = ({ photos, defaultPhotos }) => {
             secondColumn.map(column => (
               <div key={column.name} key={Math.floor(Math.random() * 10000)}>
                 <figure itemProp="image">
-                  <img src={column.url} />
+                  <a href={column.urlRegular} target="_blank">
+                    <img src={column.url} />
+                  </a>
                 </figure>
               </div>
             ))}
@@ -98,7 +123,9 @@ const Photos = ({ photos, defaultPhotos }) => {
             thirdColumn.map(column => (
               <div key={column.name} key={Math.floor(Math.random() * 10000)}>
                 <figure itemProp="image">
-                  <img src={column.url} />
+                  <a href={column.urlRegular} target="_blank">
+                    <img src={column.url} />
+                  </a>
                 </figure>
               </div>
             ))}

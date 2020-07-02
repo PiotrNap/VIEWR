@@ -24,6 +24,7 @@ function Discover() {
       );
       const json = await response.json();
       const data = await json.results;
+      console.log(data);
       let newState = [];
       await data.map(item =>
         newState.push({
@@ -32,7 +33,8 @@ function Discover() {
           urlRegular: item.urls.regular,
           avatar: item.user.profile_image.medium,
           totalPhotos: item.user.total_photos,
-          download: item.links.download
+          download: item.links.download,
+          userHTML: item.user.links.html
         })
       );
       if (newState.length === 15) {
