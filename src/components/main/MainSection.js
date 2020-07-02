@@ -17,6 +17,7 @@ const Hero = styled.main`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  position: relative;
 `;
 
 const Navigation = styled.div`
@@ -59,7 +60,7 @@ const StyledLogo = styled.div`
 
 const HeroHeader = styled.div`
   width: 80%;
-  margin: 180px auto;
+  margin: 180px auto 120px;
   font-family: 'Lora';
 `;
 
@@ -68,16 +69,16 @@ const HeroText = styled.div`
 `;
 
 const HeroTextUnderline = styled.div`
-  /* display: flex;
+  display: flex;
   align-items: center;
-  justify-content: flex-start; */
-  display: inline-block;
+  justify-content: flex-start;
   -webkit-box-align: center;
   font-family: 'Inter';
   font-weight: 300;
 
   span {
     font-weight: 500;
+    margin-left: 5px;
   }
 
   &:before {
@@ -88,6 +89,64 @@ const HeroTextUnderline = styled.div`
     position: relative;
     margin-right: 10px;
   }
+`;
+
+const SearchBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60%;
+  height: 88px;
+  background-color: white;
+
+  form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 24px;
+    width: 100%;
+    input {
+      width: 70%;
+      border: 1px solid #e0e0e0;
+      height: 40px;
+    }
+    input[type='text'] {
+      padding: 0 10px;
+      font-size: 16px;
+      font-family: 'Inter';
+    }
+    button {
+      background-color: #0b0b0b;
+      color: white;
+      text-transform: uppercase;
+      height: 40px;
+      font-weight: 500;
+      width: 30%;
+      margin-left: 24px;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+    }
+  }
+`;
+
+const RightBlock = styled.div`
+  position: absolute;
+  top: 677px;
+  transform: translateY(-50%);
+  left: 16px;
+  background-color: #fafafa;
+  height: 80px;
+  width: 250px;
+`;
+
+const LeftBlock = styled.div`
+  position: absolute;
+  top: 677px;
+  transform: translateY(-50%);
+  right: 16px;
+  background-color: #fafafa;
+  height: 80px;
+  width: 250px;
 `;
 
 const MainSection = ({ inputHandler, onSubmitHandler }) => {
@@ -118,22 +177,26 @@ const MainSection = ({ inputHandler, onSubmitHandler }) => {
           <HeroTextUnderline>
             Photographed by <span> Maarlen Bouwkamp</span>
           </HeroTextUnderline>
-          <div className="search-section">
-            <form onSubmit={e => onSubmitHandler(e)}>
-              <input type="text" onChange={e => inputHandler(e)} />
-              <button
-                type="submit"
-                value="search"
-                onClick={e => onSubmitHandler(e)}
-              >
-                Search
-              </button>
-            </form>
-          </div>
-          <div className="search-right-block"></div>
-          <div className="search-left-block"></div>
         </HeroHeader>
+        <SearchBox>
+          <form onSubmit={e => onSubmitHandler(e)}>
+            <input
+              type="text"
+              onChange={e => inputHandler(e)}
+              placeholder="Type something..."
+            />
+            <button
+              type="submit"
+              value="search"
+              onClick={e => onSubmitHandler(e)}
+            >
+              Search
+            </button>
+          </form>
+        </SearchBox>
       </Hero>
+      <RightBlock></RightBlock>
+      <LeftBlock></LeftBlock>
     </Main>
   );
 };

@@ -14,37 +14,39 @@ function Discover() {
   const [searchValue, setSearchValue] = useState(null);
   const [randomAuthors, setRandomAuthors] = useState([]);
 
-  //   useEffect(() => {
-  //     (async function getResponse() {
-  //       const response = await unsplash.search.photos(
-  //         randomWords(1),
-  //         PAGE,
-  //         PER_PAGE_LIMIT,
-  //         { orientation: 'portrait' }
-  //       );
-  //       const json = await response.json();
-  //       const data = await json.results;
-  //       let newState = [];
-  //       await data.map(item =>
-  //         newState.push({
-  //           name: item.user.name,
-  //           url: item.urls.regular,
-  //           urlSmall: item.urls.small,
-  //           avatar: item.user.profile_image.small,
-  //           totalPhotos: item.user.total_photos,
-  //           download: item.links.download
-  //         })
-  //       );
-  //       setDefaultPhotos(newState);
+  useEffect(() => {
+    (async function getResponse() {
+      const response = await unsplash.search.photos(
+        randomWords(1),
+        PAGE,
+        PER_PAGE_LIMIT,
+        { orientation: 'portrait' }
+      );
+      const json = await response.json();
+      const data = await json.results;
+      let newState = [];
+      await data.map(item =>
+        newState.push({
+          name: item.user.name,
+          url: item.urls.regular,
+          urlRegular: item.urls.regular,
+          avatar: item.user.profile_image.medium,
+          totalPhotos: item.user.total_photos,
+          download: item.links.download
+        })
+      );
+      setDefaultPhotos(newState);
+      console.log('data: ', data);
 
-  //       let authorsRandom = [];
-  //       for (let i = 0; i < 4; i++) {
-  //         var index = Math.floor(Math.random() * newState.length);
-  //         authorsRandom.push(newState[index]);
-  //       }
-  //       setRandomAuthors(authorsRandom);
-  //     })();
-  //   }, []);
+      let authorsRandom = [];
+      for (let i = 0; i < 4; i++) {
+        var index = Math.floor(Math.random() * newState.length);
+        authorsRandom.push(newState[index]);
+      }
+      setRandomAuthors(authorsRandom);
+      console.log('authorsRandom: ', authorsRandom);
+    })();
+  }, []);
 
   const inputHandler = e => {
     setSearchValue(e.target.value);
